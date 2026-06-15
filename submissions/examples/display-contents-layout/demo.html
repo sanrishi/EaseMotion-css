@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS display: contents Layout</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1><code>display: contents</code> Layout</h1>
+    <p>Remove wrapper divs from layout while keeping them in the accessibility tree.</p>
+  </header>
+
+  <main>
+    <section class="comparison">
+      <div class="column">
+        <h2>Without <code>display: contents</code></h2>
+        <p class="desc">The <code>&lt;li&gt;</code> wrappers break the grid — articles are nested inside list items.</p>
+        <ul class="card-grid broken">
+          <li class="card-wrapper">
+            <article class="card">
+              <h3>Semantic HTML</h3>
+              <p>Proper heading hierarchy and landmarks.</p>
+            </article>
+          </li>
+          <li class="card-wrapper">
+            <article class="card">
+              <h3>Accessibility Tree</h3>
+              <p>Screen readers see the <code>&lt;li&gt;</code> items.</p>
+            </article>
+          </li>
+          <li class="card-wrapper">
+            <article class="card">
+              <h3>Grid Layout</h3>
+              <p>But the grid columns don't behave as expected.</p>
+            </article>
+          </li>
+          <li class="card-wrapper">
+            <article class="card">
+              <h3>Nested Structure</h3>
+              <p>The <code>&lt;li&gt;</code> creates an extra box in the grid.</p>
+            </article>
+          </li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h2>With <code>display: contents</code></h2>
+        <p class="desc">The <code>&lt;li&gt;</code> wrappers vanish from layout — articles become direct grid children.</p>
+        <ul class="card-grid fixed">
+          <li class="card-wrapper">
+            <article class="card">
+              <h3>Semantic HTML</h3>
+              <p>Proper heading hierarchy and landmarks.</p>
+            </article>
+          </li>
+          <li class="card-wrapper">
+            <article class="card">
+              <h3>Accessibility Tree</h3>
+              <p>Screen readers still see the <code>&lt;li&gt;</code> items.</p>
+            </article>
+          </li>
+          <li class="card-wrapper">
+            <article class="card">
+              <h3>Grid Layout</h3>
+              <p>Articles now flow directly in the grid as intended.</p>
+            </article>
+          </li>
+          <li class="card-wrapper">
+            <article class="card">
+              <h3>Flat Visual Tree</h3>
+              <p>Wrappers removed from render tree — no extra boxes.</p>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="info-box">
+      <h2>How it works</h2>
+      <p><code>display: contents</code> causes an element's children to appear as if they were direct children of the element's parent — the element itself generates no box. However, it still exists in the accessibility tree, so screen readers and other assistive technology can still navigate it.</p>
+      <p>Open DevTools and inspect the list items to see the difference.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Browser support: Chrome 65+, Firefox 60+, Safari 11.1+. <code>display: contents</code> is well-supported across all modern browsers.</p>
+  </footer>
+</body>
+</html>
